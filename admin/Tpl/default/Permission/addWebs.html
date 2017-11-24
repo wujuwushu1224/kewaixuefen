@@ -1,0 +1,46 @@
+<tagLib name="html" />
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<HTML xmlns="http://www.w3.org/1999/xhtml"><HEAD><TITLE>会员中心</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK href="/Public/admin/stylen.css" type=text/css rel=stylesheet>
+
+<script type="text/javascript" src="__PUBLIC__/js/jquery.js"></script>
+<script type=text/javascript>
+function check(obj){
+	return true;
+}
+</script>
+</HEAD>
+<BODY bgColor=#ffffff leftMargin=0 topMargin=0 MARGINHEIGHT="0" MARGINWIDTH="0">
+<FORM name=postart  action="__URL__/addWebs" onsubmit="return check(this);" method=post  enctype="multipart/form-data">
+<TABLE cellSpacing=1 cellPadding=0 width="100%" bgColor=#c5d6e5 
+        border=0><TBODY>
+        <TR>
+          <TD style="COLOR: #333333; TEXT-INDENT: 10px" 
+          background=__PUBLIC__/images/u_bg.gif height=34>
+你当前的位置：[权限管理]-[添加站点]
+ </TD></TR></TBODY></TABLE>
+      <TABLE style="MARGIN-TOP: 10px" cellSpacing=0 cellPadding=0 width="100%" 
+      border=0>
+        <TBODY>
+        <TR>
+          <TD>
+            <TABLE cellSpacing=1 cellPadding=3 width="100%" bgColor=#c5d6e5 
+            border=0>
+              <TBODY>
+              <TR bgColor=#ffffff>
+                <TD align=right width=100 bgColor=#f7fcff height=30>站点名称：</TD>
+                <TD class=pl10 width=412 bgColor=#f5f8fb height=30><INPUT  name=title value="" > </TD></TR>
+                
+              <TR bgColor=#ffffff>
+                <TD align=right width=100 bgColor=#f7fcff height=30>排序：</TD>
+                <TD class=pl10 width=412 bgColor=#f5f8fb height=30><INPUT 
+                  maxLength=10 name=sort value=""> </TD></TR>
+                  
+              <TR bgColor=#ffffff>
+                <TD align=middle bgColor=#f5f8fb colSpan=2 height=30>
+                <input type="hidden" id="flag" name="flag" value="1" >
+                <INPUT type=submit value="添加" name=submit> &nbsp; <INPUT type=reset value="重填" name=reSet> &nbsp; <INPUT onclick=javascript:history.back() type=button value=返回 name=back> 
+                </TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE>
+</FORM>
+</BODY></HTML>

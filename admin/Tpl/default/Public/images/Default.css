@@ -1,0 +1,11 @@
+*{ margin:0; padding:0}
+body{ background:url(bg.jpg) no-repeat #3E96CC}
+.box{ width: 920px; margin:150px auto 0}
+.logo{ width:563px; height:60px; float:left; margin-top:162px; background:url(logo.png) no-repeat;}
+.login{ width:344px; height:334px; padding-top:110px; float:right; background:url(login_bg.png) no-repeat}
+.input{ width:285px; height:41px; line-height:41px; text-indent:10px; margin:0 auto 12px; background:url(input.png) no-repeat; font-size:14px; color:#8C8C8C; font-family:'微软雅黑'}
+.input input{ float:left; border:0; text-indent:10px; height:41px; width:215px; line-height:41px; background:none; color:#727272;}
+.input div{ float:left}
+.input img{ float:left; margin-top:10px}
+.btn{ width:290px; height:50px; margin-left:29px; margin-top:50px;}
+.btn input{ width:290px; height:50px; background:url(btn.png) no-repeat; border:0; cursor: pointer}

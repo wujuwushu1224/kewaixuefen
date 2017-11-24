@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML 
+xmlns="http://www.w3.org/1999/xhtml"><HEAD><TITLE>栏目管理 - 添加栏目</TITLE>
+<META content="noindex, nofollow" name=robots>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK 
+href="__PUBLIC__/admin/images/general.css" type=text/css rel=stylesheet><LINK 
+href="__PUBLIC__/admin/images/main.css" type=text/css rel=stylesheet>
+<SCRIPT language=javascript src="__PUBLIC__/js/jquery.js"></SCRIPT>
+<script type="text/javascript">
+function validate(obj){
+	if($.trim(obj.typename.value)==''){
+		alert('请填写栏目名称');
+		obj.typename.focus();
+		return false;
+	}
+	if($.trim(obj.url.value)==''){
+		alert('请填写URL');
+		obj.url.focus();
+		return false;
+	}
+}
+</script>
+<META content="MSHTML 6.00.2900.5726" name=GENERATOR></HEAD>
+<BODY>
+<H1><SPAN class=action-span><A 
+href="__URL__/partList/language/{$language}">栏目列表</A></SPAN> <SPAN 
+class=action-span1>管理中心</SPAN><SPAN class=action-span1 id=search_id>- 添加栏目 </SPAN>
+<DIV style="CLEAR: both"></DIV></H1><!-- start add new category form -->
+<DIV class=main-div>
+<FORM name=theForm onSubmit="return validate(this)" action="__URL__/addPart" method=post 
+encType=multipart/form-data>
+<TABLE id=general-table width="100%">
+  <TBODY>
+  <TR>
+    <TD class=label>栏目名称:</TD>
+    <TD><INPUT maxLength=20 size=27 name="typename" id="typename"> <FONT color=red>*</FONT>  </TD></TR>
+  <TR>
+    <TD class=label>上级栏目:</TD>
+    <TD>
+    <SELECT name="subid" id="subid">
+    <option value="0">顶级栏目</option>
+    {$options}
+    </SELECT>
+    </TD></TR>
+  <TR>
+    <TD class=label>排序:</TD>
+    <TD><INPUT size=15 value=50 name="sort" id="sort" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" > </TD></TR>
+  <TR>
+    <TD class=label>URL:</TD>
+    <TD><INPUT type="text" value="" name="url" id="url"> </TD></TR>
+  <TR>
+    <TD class=label>是否显示:</TD>
+    <TD><INPUT type=radio CHECKED value=1 name="isshow" id="isshow"> 是 <INPUT type=radio 
+      value=0 name="isshow" id="isshow"> 否 </TD></TR>
+  <TR>
+    <TD class=label>栏目描述:</TD>
+    <TD><TEXTAREA name="desc" rows=6 cols=48 id="desc"></TEXTAREA></TD></TR></TBODY></TABLE>
+<DIV class=button-div>
+<INPUT type=hidden name="flag" value="1">
+<INPUT type=hidden name="language" value="{$language}">
+<INPUT type=submit value=" 确定 "> <INPUT type=reset value=" 重置 "> </DIV>
+</FORM></DIV>
+</BODY></HTML>

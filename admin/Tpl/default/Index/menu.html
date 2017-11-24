@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<SCRIPT language=javascript src='/public/js/jquery.js'></SCRIPT>
+<style>
+*{ margin:0; padding:0}
+.clr{ clear:both}
+.menu { width:186px; margin-top:30px; font-size:12px;}
+.menu img{ border:0}
+.menu a{ text-decoration: none; float:right}
+.menu ul li{ width:100%; list-style:none; text-indent:50px;}
+.menu ul li > a{ width:176px; height:36px; margin-top:5px; display:block; float:right; line-height:32px; color:#fff; background:url(/public/admin/images/menu_abg.png) no-repeat}
+.menu ul li > a:hover{ color:#F7D352}
+.menu ul li div { float:right; width:100%; display:none}
+.menu ul li div a{ width:100%; height:25px; float:left; line-height:25px; color:#fff;}
+</style>
+</HEAD>
+<BODY  style=" background:url(/public/admin/images/left_bg.jpg) no-repeat fixed;">
+<div class='menu'>
+	<ul>
+		<volist name='webs' id='websls'>
+		<li>
+			<a href="javascript:;">{$websls['title']}</a>
+			<div>
+				<if condition="in_array($websls['id'],$sysid)">
+				<a href="__APP__/System/website/wid/{$websls.id}" target=main style='color:#ffa1f7'>网站设置</a>
+				<a href="__APP__/System/Column/wid/{$websls.id}" target=main style='color:#ffa1f7'>网站栏目管理</a>
+				</if>
+				
+				<volist name='websls.cols' id='cls'>
+				<a href="javascript:;" target=main><IMG src="/Public/images/menu_icon.gif" width=9 height=9>&nbsp;{$cls['title']}</a>
+					<volist name='cls.sec' id='sls'>
+					  <php>if($sls['type'] == 1){</php>
+					  <A class=menuChild href="__APP__/Infomanage/infoEdit/tid/<php>echo $sls['id'];</php>" target=main>&nbsp;&nbsp;&nbsp;&nbsp;<IMG src="/Public/images/menu_icon2.gif" width=9 height=9>&nbsp;<php>echo $sls['title'];</php></A>
+					  <php>}else if($sls['type'] == 3){</php>
+					  <A class=menuChild href="__APP__/flink/linksList/tid/<php>echo $sls['id'];</php>" target=main>&nbsp;&nbsp;&nbsp;&nbsp;<IMG src="/Public/images/menu_icon2.gif" width=9 height=9>&nbsp;<php>echo $sls['title'];</php></A>
+					  <php>}else if($sls['type'] == 4){</php>
+					  <A class=menuChild href="__APP__/message/meslist/tid/<php>echo $sls['id'];</php>" target=main>&nbsp;&nbsp;&nbsp;&nbsp;<IMG src="/Public/images/menu_icon2.gif" width=9 height=9>&nbsp;<php>echo $sls['title'];</php></A>
+					  <php>}else if($sls['type'] == 6){</php>
+					  <A class=menuChild href="__APP__/flink/editLinks/tid/<php>echo $sls['id'];</php>" target=main>&nbsp;&nbsp;&nbsp;&nbsp;<IMG src="/Public/images/menu_icon2.gif" width=9 height=9>&nbsp;<php>echo $sls['title'];</php></A>
+					  <php>}else if($sls['type'] == 7){</php>
+					  <A class=menuChild href="__APP__/baoming/meslist/tid/<php>echo $sls['id'];</php>" target=main>&nbsp;&nbsp;&nbsp;&nbsp;<IMG src="/Public/images/menu_icon2.gif" width=9 height=9>&nbsp;<php>echo $sls['title'];</php></A>
+					  <php>}else if($sls['type'] == 8){</php>
+					  <A class=menuChild href="__APP__/company/meslist/tid/<php>echo $sls['id'];</php>" target=main>&nbsp;&nbsp;&nbsp;&nbsp;<IMG src="/Public/images/menu_icon2.gif" width=9 height=9>&nbsp;<php>echo $sls['title'];</php></A>
+					  <php>}else if($sls['type'] == 9){</php>
+					  <A class=menuChild href="__APP__/Kebiao/KebiaoCate/tid/<php>echo $sls['id'];</php>" target=main>&nbsp;&nbsp;&nbsp;&nbsp;<IMG src="/Public/images/menu_icon2.gif" width=9 height=9>&nbsp;<php>echo $sls['title'];</php></A>
+					  <php>}else{</php>
+					  <A class=menuChild href="__APP__/Infomanage/infoList/tid/<php>echo $sls['id'];</php>" target=main>&nbsp;&nbsp;&nbsp;&nbsp;<IMG src="/Public/images/menu_icon2.gif" width=9 height=9>&nbsp;<php>echo $sls['title'];</php></A>
+					  <php>}</php>
+					</volist>
+				</volist>
+				
+				<div class='clr'></div>
+			</div>
+		</li>
+		</volist>	
+		<volist name="menulist" id="menuls" key="k">
+			<if condition="$menuls['seclist'] neq ''">
+			<li>
+			<a href="javascript:;">{$menuls['menu_name']}</a>
+			<div>
+				<volist name="menuls.seclist" id="secls">
+				<if condition="$secls['is_target'] eq 0">
+				<a href="__APP__/{$secls.menu_url}" target=main>{$secls['menu_name']}</a>
+				<else />
+				<a href="{$secls.menu_url}" target='_blank'>{$secls['menu_name']}</a>
+				</if>
+				</volist>
+				<div class='clr'></div>
+			</div>
+			</li>
+			</if>
+		</volist>
+	</ul>
+</div>
+<script type="text/javascript">
+$(function(){
+	$(".menu ul li > a").click(function(){
+		if ($(this).parent().children('div').css('display') == 'none'){
+			$(this).parent().children('div').show();
+		}else{
+			$(this).parent().children('div').hide();
+		}
+	})
+})
+</script>
+
+</BODY></HTML>

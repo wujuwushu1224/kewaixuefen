@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML xmlns="http://www.w3.org/1999/xhtml"><HEAD><TITLE>栏目管理 - 添加角色</TITLE>
+<META content="noindex, nofollow" name=robots>
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
+<LINK 
+href="/Public/admin/images/general.css" type=text/css rel=stylesheet>
+<LINK href="/Public/admin/stylen.css" type=text/css rel=stylesheet>
+
+<SCRIPT language=javascript src="__PUBLIC__/js/jquery.js"></SCRIPT>
+<script language="javascript">
+function CheckAll(form)
+{
+  for (var i=0;i<form.elements.length;i++)
+    {
+    var e = form.elements[i];
+    if (e.Name != "chkAll")
+       e.checked = form.chkAll.checked;
+    }
+}
+</script>
+<META content="MSHTML 6.00.2900.5726" name=GENERATOR></HEAD>
+<BODY>
+ <table bgcolor="C5D6E5" border="0" cellpadding="0" 
+cellspacing="1" width="100%">
+        <tbody><tr>
+          <td style="color: rgb(51, 51, 51); text-indent: 10px;" 
+background="/Public/images/u_bg.gif" height="34"><span id="posi_span">你当前的位置：[权限管理]-[添加角色]</span>
+</td>
+        </tr>
+      </tbody></table>
+
+<DIV class=main-div>
+<FORM name=theForm action="" method=post encType=multipart/form-data>
+<div style="padding:10px; background:#fff;">
+
+<div style="padding:10px;">
+	<b>角色名称：</b>
+	<INPUT maxLength=20 size=27 name="rolename" id="rolename" value="">
+	<FONT color=red>*</FONT>
+</div>
+
+<div style="padding:10px;">
+	<b>系统权限：</b><br />
+	<div style="border:1px solid gold; padding:10px;">
+	
+	<volist name='list' id='ls'>
+	<div style='padding:10px 0'>
+	<label><input name="adid[]"  value="{$ls.id}" onClick="Checked(form)" type="checkbox"><b>{$ls.menu_name}</b></label><br />
+	<volist name='ls.sed' id='sls'>
+		&nbsp;&nbsp;&nbsp;&nbsp;<label><input name="adid[]"  value="{$sls.id}" onClick="Checked(form)" type="checkbox">{$sls.menu_name}</label>
+	</volist>
+	</div>
+    </volist>
+    
+    </div>
+</div>
+
+
+<script>
+$(function(){
+	$('#web_c input:checkbox').click(function(){
+		tv = $(this).val();
+		if($(this).attr('checked')){ //如果被选中,则显示该站下的栏目
+			$('.web_'+tv).show();
+		}else{
+			$('.web_'+tv).hide();
+		}
+	})
+})
+</script>
+
+</div>
+<DIV class=button-div>
+<INPUT type=hidden name="flag" value="1">
+<INPUT type=submit value=" 添加 "> <INPUT type=reset value=" 重置 "> </DIV>
+</FORM></DIV>
+</BODY></HTML>

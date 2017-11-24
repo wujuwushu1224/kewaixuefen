@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<LINK href="__PUBLIC__/admin/stylen.css" type=text/css rel=stylesheet>
+<script src="__PUBLIC__/js/jquery.js" type="text/javascript"></script>
+</head>
+<body leftmargin="0" topmargin="0" bgcolor="#ffffff" marginheight="0" 
+marginwidth="0">
+<style>
+/* 头部开始 */
+a:link {color: #07519A; text-decoration: none } 
+a:visited {color: #07519A; text-decoration: none }
+a:hover {color: #FF0000; text-decoration:underline} 
+a:active {color: #07519A; text-decoration: none }
+
+.px{ width:50px; text-align:center}
+.lm{ width:250px;}
+</style>
+<script language="javascript">
+<!--//
+function update(field,val,id){
+	$.ajax({
+	     type: "post",
+	        dataType: "json",
+	        url: "__URL__/update_column",
+	        data: {field:field,val:val,id:id},
+	        complete :function(){ }, 
+	        success: function(){}
+	    });
+}
+//-->
+</script>
+ <table bgcolor="C5D6E5" border="0" cellpadding="0" 
+cellspacing="1" width="100%">
+        <tbody><tr>
+          <td style="color: rgb(51, 51, 51); text-indent: 10px;" 
+background="__PUBLIC__/images/u_bg.gif" height="34"><span id="posi_span">你当前的位置：[网站栏目管理]-[网站栏目列表]</span>
+</td>
+          
+        </tr>
+      </tbody></table>
+      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin:0 auto">
+        <tbody><tr>
+          <td>
+          <table style="margin-top: 10px;" bordercolorlight="#000000" bordercolordark="#FFFFFF" align="center" bgcolor="C5D6E5" border="0" cellpadding="0" cellspacing="1" width="80%" style="margin:0 auto">
+            <tbody><tr bgcolor="F1F1F1">
+              <td bgcolor="F7FCFF" height="30" width="10%"><p align="center">排序</p></td>
+              <td bgcolor="F7FCFF" height="28" width="30%"><p align="center">栏目名称</p></td>
+              <td align="center" bgcolor="F7FCFF" width="20%">二级栏目分类</td>
+              <td bgcolor="F7FCFF" width="20%"><p align="center">前台导航栏目是否显示</p></td>
+              <td align="center" bgcolor="F7FCFF">删除</td>
+            </tr>
+			
+			<volist name="list" id="ls">
+            <tr style="" onmouseover="this.style.backgroundColor='#FCF9EA'" onmouseout="this.style.backgroundColor=''" bgcolor="#ffffff">
+              <td height="30" align="center"><input type="text" class="px" value='{$ls.sort}' onblur="update('sort',this.value,{$ls.id})" /></td>
+              <td height="28" align="center"  ><input type="text" class="lm" value='{$ls.title}' onblur="update('title',this.value,{$ls.id})" /></td>
+			  <td height="28" align="center"><a href="__URL__/column_xl/wid/{$ls.wid}/cid/{$ls.id}">＞＞进入管理分类列表</a></td>
+              <td height="28" align="center">
+              <select name="isshow" onchange="update('isshow',this.value,{$ls.id})">
+              	<option value="1" <if condition="$ls['isshow'] eq 1">selected</if>>显示</option>
+              	<option value="0" <if condition="$ls['isshow'] eq 0">selected</if>>不显示</option>
+              </select>
+			  </td>
+              <td align="center" height="28">
+              <input type="button" value='删除' onclick="if(confirm('是否将此栏目删除?')){ window.location.href='__URL__/column_del/id/{$ls.id}' }" />
+              </td>
+            </tr>	
+            </volist>
+          </tbody></table>
+          
+          <FORM action="" method="post">
+          <TABLE cellSpacing=1 cellPadding=3 width="80%" bgColor=#c5d6e5 border=0 style="margin:40px auto 0">
+              <TBODY>
+              <TR bgColor=#ffffff>
+              <td bgColor=#f5f8fb height=30 align=center>
+              &nbsp;&nbsp;栏目名称：<INPUT  name=title style="width:200px" >
+               &nbsp;&nbsp;前台导航栏目是否显示：<select name="isshow">
+              	<option value="1">显示</option>
+              	<option value="0">不显示</option>
+             	</select>
+             	&nbsp;&nbsp;排序： <INPUT  name=sort style="width:50px" value='0' >
+             	<input type="hidden" name="wid" value="{$wid}" />
+             	<INPUT type=submit value="添加分类" id="submit">
+                </TD></TR>
+                </TBODY>
+                </TABLE>
+          </FORM>
+          
+          </td>
+        </tr>
+      </tbody></table>
+                                                          
+</body></html>
